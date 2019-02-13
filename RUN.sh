@@ -1,0 +1,1 @@
+java -jar out/helloworld3.jar $@
