@@ -3,14 +3,18 @@ package com.leo.helloworld3
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
-    when {
-        args.isEmpty() -> exitProcess(0)
-        else -> if (args.size == 1) {
-            exitProcess(1)
-        } else {
-            if (args.size == 2) {
-                exitProcess(2)
-            } else exitProcess(3)
+    val a: Int = when {
+        args.isEmpty() -> 0
+        args.size == 1 -> 1
+        args.size == 2 -> 2
+        else -> {
+            for (arg in args) {
+                println(arg)
+            }
+            3
         }
     }
+
+    exitProcess(a)
 }
+
