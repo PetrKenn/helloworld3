@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
         } else {
             if (args.size == 2) {
                 exitProcess(2)
-            } else exitProcess(100)
+            } else exitProcess(3)
         }
     }
 }

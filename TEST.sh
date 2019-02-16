@@ -1,7 +1,22 @@
-echo Result $? expected 0
+total=0
+success=0
+
+echo
+./RUN.sh
+result=$?
+echo Result $result expected 0
+
+echo
 ./RUN.sh qw
-echo Result $? expected 1
+result=$?
+echo Result $result expected 1
+
+echo
 ./RUN.sh qw qw
-echo Result $? expected 2
+result=$?
+echo Result $result expected 2
+
+echo
 ./RUN.sh qw qw qw
-echo Result $? expected 3
+result=$?
+echo Result $result expected 3
