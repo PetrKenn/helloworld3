@@ -1,53 +1,25 @@
 TOTAL=0
 SUCCESS=0
-
-echo ВЫВОД БЕЗ ПАРАМЕТРОВ
-./RUN.sh
-result=$?
-let "TOTAL++"
-echo Result $result expected 0
-if [ $result -eq 0 ]; then
-let "SUCCESS = $SUCCESS + 1"
-    echo success. Result $result expected 0
-else
-    echo Fail. Result $result expected 0
-fi
-
-echo С ОДНИМ ПАРАМЕТРОМ
-./RUN.sh qw
-result=$?
-let "TOTAL++"
-echo Result $result expected 1
-let "SUCCESS = $SUCCESS + 1"
-if [ $result -eq 1 ]; then
-    echo success. Result $result expected 1
-else
-    echo Fail. Result $result expected 1
-fi
-
-echo С ДВУМЯ ПАРАМЕТРАМИ
-./RUN.sh qw qw
-result=$?
-let "TOTAL++"
-echo Result $result expected 2
-if [ $result -eq 2 ]; then
-let "SUCCESS = $SUCCESS + 1"
-    echo success. Result $result expected 2
-else
-    echo Fail. Result $result expected 2
-fi
-
-echo С ТРЕМЯ ПАРАМЕТРАМИ
-./RUN.sh qw qw qw
-result=$?
-let "TOTAL++"
-echo Result $result expected 3
-if [ $result -eq 3 ]; then
-let "SUCCESS = $SUCCESS + 1"
-    echo success. Result $result expected 3
-else
-    echo Fail. Result $result expected 3
-fi
+function test {
+    desc=$1
+    exp=$2
+    shift 2
+    echo $desc
+    ./RUN.sh $@
+    result=$?
+    let "TOTAL++"
+    echo Result $result expected $exp
+    if [ $result -eq $exp ]; then
+        let "SUCCESS = $SUCCESS + 1"
+        echo success. Result $result expected $exp
+    else
+        echo Fail. Result $result expected $exp
+    fi
+}
+test "БЕЗ ПАРАМЕТРОВ" 0
+test "С ОДНИМ ПАРАМЕТРОМ" 1 foo
+test "С ДВУМЯ ПАРАМЕТРАМИ" 2 foo bar
+test "С ТРЕМЯ ПАРАМЕТРАМИ" 3 foo bar bas
 
 echo
 echo Results:
